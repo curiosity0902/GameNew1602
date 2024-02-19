@@ -41,9 +41,7 @@ namespace Game.Pages
                 MessageBox.Show("Превышены максимальные значения");
             }
             else
-            {
-                CRUD.CreateCharacterRogue(new Character(name, "Rogue", strength, 65, dexterity, 250, intelegence, 70, vitality, 70, 0, 0, 0, 0, 0, 0, 0, 0, 5, 1, 1000));
-
+            {            
                 var client = new MongoClient("mongodb://localhost");
                 var database = client.GetDatabase("Characters");
                 var collection = database.GetCollection<Character>("CharacterCollection");
@@ -56,7 +54,8 @@ namespace Game.Pages
                 if (pers != null)
                     NavigationService.Navigate(new NotBaseStatpointsPage());
                 else
-                    MessageBox.Show("!!!");
+                     CRUD.CreateCharacterRogue(new Character(name, "Rogue", strength, 65, dexterity, 250, intelegence, 70, vitality, 70, 
+                         (vitality * 1.5 + strength * 0.5), 0, (strength * 0.5 + dexterity * 0.5), (dexterity * 1.5), (intelegence * 0.2), (intelegence * 0.5), (dexterity * 0.2), dexterity, 5, 1, 1000));
             }
 
 

@@ -33,16 +33,6 @@ namespace Game
         public int Point { get; set; }
         public int Expirience { get; set; }
 
-        //public double CrtDamage
-        //{
-        //    get => _crtDamage;
-
-        //    set 
-        //    {
-        //        if (value > _crtDamage)
-
-        //    }
-        //}
 
         public double Heath { get; set; }
         public double Manna { get; set; }
@@ -71,17 +61,6 @@ namespace Game
             Point = point;
             Level = level;
             Expirience = expirience;
-        }
-        public void GetAttributsWarrrior()
-        {
-            Heath = Vitality * 2;
-            Manna = Intelegence;
-        }
-
-        public void GetAttributsWizard()
-        {
-            Heath = Vitality * 1.4 + 0.2;
-            Manna = 1.5 * Intelegence;
         }
         
     }

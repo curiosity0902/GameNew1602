@@ -43,9 +43,7 @@ namespace Game.Pages
                 MessageBox.Show("Превышены максимальные значения");
             }
             else
-            {
-                CRUD.CreateCharacterWizard(new Character(name, "Wizard", strength, 45, dexterity, 80, intelegence, 250, vitality, 70, 0, 0, 0, 0, 0, 0, 0, 0, 10, 1, 1000));
-
+            {          
                 var client = new MongoClient("mongodb://localhost");
                 var database = client.GetDatabase("Characters");
                 var collection = database.GetCollection<Character>("CharacterCollection");
@@ -58,7 +56,8 @@ namespace Game.Pages
                 if (pers != null)
                     NavigationService.Navigate(new NotBaseStatpointsPage());
                 else
-                    MessageBox.Show("!!!");
+                    CRUD.CreateCharacterWizard(new Character(name, "Wizard", strength, 45, dexterity, 80, intelegence, 250, vitality, 70, 
+                        (vitality * 1.4 + strength * 0.2), 0, (strength * 0.5), dexterity, intelegence, intelegence, (dexterity * 0.2), dexterity, 10, 1, 1000));
             }
         }
     }

@@ -38,19 +38,49 @@ namespace Game.Pages
 
         private void btnWand_Click(object sender, RoutedEventArgs e)
         {
-            
 
-            Weapon weapon = new Weapon("Wand", "Common");
-            App.character.Weapon = weapon;
-            App.character.PDamage = App.character.PDamage + 2; 
-            CRUD.Put("Characters", "CharacterCollection", App.character.Name, App.character);
+            if (App.character.Weapon != null && App.character.Weapon.Name == "Wand")
+                MessageBox.Show("Низя..");
+            else if (App.character.Weapon != null)
+            {
+                App.character.Weapon = null;
 
+
+                Weapon weapon = new Weapon("Wand", "Common");
+                App.character.Weapon = weapon;
+                App.character.PDamage = App.character.PDamage + 2;
+                CRUD.Put("Characters", "CharacterCollection", App.character.Name, App.character);
+            }
+            else
+            {
+                Weapon weapon = new Weapon("Wand", "Common");
+                App.character.Weapon = weapon;
+                App.character.PDamage = App.character.PDamage + 2; 
+                CRUD.Put("Characters", "CharacterCollection", App.character.Name, App.character);
+            }
 
         }
 
         private void btnDagger_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new NotBaseStatpointsPage());
+            if (App.character.Weapon != null && App.character.Weapon.Name == "Dager")
+                MessageBox.Show("Низя..");
+            else if (App.character.Weapon != null)
+            {
+                App.character.Weapon = null;
+
+                Weapon weapon = new Weapon("Dager", "Common");
+                App.character.Weapon = weapon;
+                App.character.PDamage = App.character.PDamage + 3;
+                CRUD.Put("Characters", "CharacterCollection", App.character.Name, App.character);
+            }
+            else
+            {
+                Weapon weapon = new Weapon("Dager", "Common");
+                App.character.Weapon = weapon;
+                App.character.PDamage = App.character.PDamage + 3;
+                CRUD.Put("Characters", "CharacterCollection", App.character.Name, App.character);
+            }
         }
 
         private void btnSword_Click(object sender, RoutedEventArgs e)

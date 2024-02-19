@@ -30,34 +30,7 @@ namespace Game.Pages
         public NotBaseStatpointsPage()
         {
             InitializeComponent();
-            if (App.character.Weapon != null)
-            {
-                txtName.Text = App.character.Name;
-                StrengthTb.Text = Convert.ToString((App.character.Strenght).ToString("0.####"));
-                DexterityTb.Text = Convert.ToString(App.character.Dexterity);
-                IntelegenceTb.Text = Convert.ToString(App.character.Intelegence);
-                VitalityTb.Text = Convert.ToString(App.character.Vitality);
-
-                PointsTb.Text = Convert.ToString(App.character.Point);
-                LevelTb.Text = Convert.ToString(App.character.Level);
-
-                HealthTB.Text = Convert.ToString(App.character.Heath);
-                MannaTB.Text = Convert.ToString(App.character.Intelegence);
-
-
-                PDamageTb.Text = Convert.ToString(App.character.PDamage);
-
-                ArmorTb.Text = Convert.ToString(App.character.Dexterity);
-                MDamageTb.Text = Convert.ToString((App.character.Intelegence * 0.2).ToString("0"));
-                MDefenceTb.Text = Convert.ToString(App.character.Intelegence * 0.5);
-                CRTChanseTb.Text = Convert.ToString(App.character.Dexterity * 0.2);
-                CRTDamageTb.Text = Convert.ToString(App.character.Dexterity);
-                exptxt.Text = Convert.ToString(App.character.Expirience);
-
-            }
-            else
-            {
-                if (App.character.ClassName == "Warrior")
+                if (App.character.Weapon != null &&  App.character.ClassName == "Warrior" || App.character.ClassName == "Warrior" && App.character.Weapon == null)
                 {
                     txtName.Text = App.character.Name;
                     StrengthTb.Text = Convert.ToString((App.character.Strenght).ToString("0.####"));
@@ -68,8 +41,8 @@ namespace Game.Pages
                     PointsTb.Text = Convert.ToString(App.character.Point);
                     LevelTb.Text = Convert.ToString(App.character.Level);
 
-                    //HealthTB.Text = Convert.ToString(App.character.Vitality * 2 + (App.character.Strenght));
-                    HealthTB.Text = Convert.ToString(App.character.Heath);
+                    HealthTB.Text = Convert.ToString(App.character.Vitality * 2 + (App.character.Strenght));
+                    //HealthTB.Text = Convert.ToString(App.character.Heath);
                     MannaTB.Text = Convert.ToString(App.character.Intelegence);
 
 
@@ -82,9 +55,10 @@ namespace Game.Pages
                     CRTChanseTb.Text = Convert.ToString(App.character.Dexterity * 0.2);
                     CRTDamageTb.Text = Convert.ToString(App.character.Dexterity);
                     exptxt.Text = Convert.ToString(App.character.Expirience);
+                ObnovBD();
 
                 }
-                else if (App.character.ClassName == "Rogue")
+                else if (App.character.Weapon != null && App.character.ClassName == "Rogue" || App.character.ClassName == "Rogue" && App.character.Weapon == null)
                 {
                     txtName.Text = App.character.Name;
                     StrengthTb.Text = Convert.ToString(App.character.Strenght);
@@ -98,17 +72,19 @@ namespace Game.Pages
                     HealthTB.Text = Convert.ToString(App.character.Vitality * 1.5 + (App.character.Strenght * 0.5));
                     MannaTB.Text = Convert.ToString(App.character.Intelegence * 1.2);
 
-                    PDamageTb.Text = Convert.ToString(App.character.Strenght * 0.5 + App.character.Dexterity * 0.5);
+                   PDamageTb.Text = Convert.ToString(App.character.PDamage);
+                  //PDamageTb.Text = Convert.ToString(App.character.Strenght * 0.5 + App.character.Dexterity * 0.5);
 
-                    ArmorTb.Text = Convert.ToString(App.character.Dexterity * 1.5);
+                ArmorTb.Text = Convert.ToString(App.character.Dexterity * 1.5);
                     MDamageTb.Text = Convert.ToString(App.character.Intelegence * 0.2);
                     MDefenceTb.Text = Convert.ToString(App.character.Intelegence * 0.5);
                     CRTChanseTb.Text = Convert.ToString(App.character.Dexterity * 0.2);
                     CRTDamageTb.Text = Convert.ToString(App.character.Dexterity);
                     exptxt.Text = Convert.ToString(App.character.Expirience);
+                ObnovBD();
 
-                }
-                else if (App.character.ClassName == "Wizard")
+            }
+                else if (App.character.Weapon != null && App.character.ClassName == "Wizard" || App.character.ClassName == "Wizard" && App.character.Weapon == null)
                 {
                     txtName.Text = App.character.Name;
                     StrengthTb.Text = Convert.ToString(App.character.Strenght);
@@ -122,7 +98,8 @@ namespace Game.Pages
                     HealthTB.Text = Convert.ToString(App.character.Vitality * 1.4 + (App.character.Strenght * 0.2));
                     MannaTB.Text = Convert.ToString(App.character.Intelegence * 1.5);
 
-                    PDamageTb.Text = Convert.ToString(App.character.Strenght * 0.5);
+                    //PDamageTb.Text = Convert.ToString(App.character.Strenght * 0.5);
+                    PDamageTb.Text = Convert.ToString(App.character.PDamage);
 
                     ArmorTb.Text = Convert.ToString(App.character.Dexterity);
                     MDamageTb.Text = Convert.ToString(App.character.Intelegence);
@@ -130,15 +107,13 @@ namespace Game.Pages
                     CRTChanseTb.Text = Convert.ToString(App.character.Dexterity * 0.2);
                     CRTDamageTb.Text = Convert.ToString(App.character.Dexterity);
                     exptxt.Text = Convert.ToString(App.character.Expirience);
-
-                }
+                ObnovBD();
 
             }
+        }
             
 
-        }
-
-        private void btnCreate_Click(object sender, RoutedEventArgs e)
+        private void btnCreate_Click(object sender, RoutedEventArgs e) //КНОПКА СОХРАНЕНИЯ
         {
             if (txtName.Text != "")
             {
@@ -203,7 +178,7 @@ namespace Game.Pages
                 Refresh();
         
                 MessageBox.Show("ok");
-                //NavigationService.Navigate(new NotBaseStatpointsPage());
+
             }
             else
                 MessageBox.Show("!!!");
@@ -234,6 +209,7 @@ namespace Game.Pages
             App.character.Expirience = Convert.ToInt32(exptxt.Text);
             NavigationService.Navigate(new NotBaseStatpointsPage());
         }
+
         public void ObnovBD()
         {
             if (txtName.Text != "")
@@ -315,10 +291,8 @@ namespace Game.Pages
                 StrengthTb.Text = Convert.ToString(App.character.Strenght + 1);
                 PointsTb.Text = Convert.ToString(App.character.Point - 1);
                 PDamageTb.Text = Convert.ToString(double.Parse(StrengthTb.Text));
-                //PDamageTb.Text = Convert.ToString(double.Parse(StrengthTb.Text) * 0.5 + double.Parse(DexterityTb.Text) * 0.5);
                 minStrenght += 1;
                 point -= 1;
-
                 ObnovBD();
                 Refresh();
             }
@@ -481,20 +455,15 @@ namespace Game.Pages
 
         private void Levelbtn_Click(object sender, RoutedEventArgs e)
         {
-            int expupp = Convert.ToInt32(App.character.Expirience); //При нимаем значение опыта (1000)
-            int lever = Convert.ToInt32(App.character.Level); //Принимаем значение уровня (1)
-            int point = Convert.ToInt32(App.character.Point); //Очки (5)
-            //int countlever = 1; //Счетчик уровня = 1
-            //for(int i = 1; i <= lever ; i++) //
-            //{
-            //    countlever ++;
-            //}
+            int expupp = Convert.ToInt32(App.character.Expirience);
+            int lever = Convert.ToInt32(App.character.Level);
+            int point = Convert.ToInt32(App.character.Point);
 
-            if (expupp - lever  * 1000 >= 0) // Если (1001 - 1 * 1000) = 1 >= 0
+            if (expupp - lever  * 1000 >= 0) 
             {
-                if (lever < 10) //Если уровень < 10 - работает
+                if (lever < 10)
                 {
-                    expupp = expupp + 1000 * (lever + 1); // уровень2 = 1000 + 1000 * 2 = 3000 / уровень3 = 3000 + 1000 * 3 = 6000 / уровень4 = 6000 + 1000 * 4 = 10000
+                    expupp = expupp + 1000 * (lever + 1);
                     lever++;
                     point += 5;
 
@@ -510,31 +479,7 @@ namespace Game.Pages
                 else
                     MessageBox.Show("Максимальный уровень!");
 
-
             }
-
-
-
-            //int point = Convert.ToInt32(App.character.Point);
-            //int level = Convert.ToInt32(App.character.Level);
-
-            //int maxLevel = 99;
-
-            //if (point >= 1000)
-            //{
-            //    for (int i = 1; i < maxLevel; i++)
-            //    {
-            //        LevelTb.Text = Convert.ToString(App.character.Level + 1);
-            //        PointsTb.Text = Convert.ToString(App.character.Point + 1000);
-            //        level += 1;
-            //        point += 1000;
-
-            //        MessageBox.Show("Update");
-            //    }
-            //}
-            //else
-            //    MessageBox.Show("Stop");
-
         }
 
         private void btnBackToMenu_Click(object sender, RoutedEventArgs e)

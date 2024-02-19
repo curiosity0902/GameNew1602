@@ -27,7 +27,6 @@ namespace Game.Pages
         {
             InitializeComponent();  
         }
-
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
             string name = txtName.Text;
@@ -42,8 +41,6 @@ namespace Game.Pages
             }
             else
             {
-                
-
                 var client = new MongoClient("mongodb://localhost");
                 var database = client.GetDatabase("Characters");
                 var collection = database.GetCollection<Character>("CharacterCollection");
@@ -59,18 +56,6 @@ namespace Game.Pages
                     CRUD.CreateCharacterWarrior(new Character(name, "Warrior", strength, 250, dexterity, 80, intelegence, 50, vitality, 100, (vitality * 2 + strength), 0, strength, 0, 0, 0, 0, 0, 5, 1, 1000));
 
             }
-
-
-        }
-
-        private void PlusStrenghbtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void MinusStrenghbtn_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
