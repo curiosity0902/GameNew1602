@@ -44,11 +44,23 @@ namespace Game.Mongodb
     {
         public string Name { get; set; }    
         public string Type { get; set; }
+        public double PDamage { get; set; }
+        public int Vitality { get; set; }
+        public int Strenght { get; set; }
+        public int Dexterity { get; set; }
+        public int Intelegence { get; set; }
+        public int Manna { get; set; }
+        public double Armor { get; set; }
+        public double MDamage { get; set; }
+        public double MDefence { get; set; }
+        public double CrtChanse { get; set; }
+        public double CrtDamage { get; set; }
+        public int Level { get; set; }
+        public int Point { get; set; }
+        public int Expirience { get; set; }
 
-
-        public Weapon(string name, string type) 
+        public Weapon(string type) 
         { 
-            Name = name;
             Type = type;
         }
     }

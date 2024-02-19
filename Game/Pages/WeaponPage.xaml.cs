@@ -1,4 +1,5 @@
 ﻿using Game.Mongodb;
+using Game.Mongodb.Weapons;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
@@ -39,23 +40,28 @@ namespace Game.Pages
         private void btnWand_Click(object sender, RoutedEventArgs e)
         {
 
-            if (App.character.Weapon != null && App.character.Weapon.Name == "Wand")
-                MessageBox.Show("Низя..");
-            else if (App.character.Weapon != null)
+            if(App.character.Weapon != null)
             {
-                App.character.Weapon = null;
+                if (App.character.Weapon.Name == "Wand")
+                    MessageBox.Show("Низя..");
+                else
+                {
+                    App.character.PDamage -= App.character.Weapon.PDamage;
+                    App.character.Weapon = null;
 
+                    Wand wand = new Wand("Common");
 
-                Weapon weapon = new Weapon("Wand", "Common");
-                App.character.Weapon = weapon;
-                App.character.PDamage = App.character.PDamage + 2;
-                CRUD.Put("Characters", "CharacterCollection", App.character.Name, App.character);
+                    App.character.Weapon = wand;
+                    App.character.PDamage = App.character.PDamage + wand.PDamage;
+                    CRUD.Put("Characters", "CharacterCollection", App.character.Name, App.character);
+                }
+
             }
             else
             {
-                Weapon weapon = new Weapon("Wand", "Common");
-                App.character.Weapon = weapon;
-                App.character.PDamage = App.character.PDamage + 2; 
+                Wand wand = new Wand("Common");
+                App.character.Weapon = wand;
+                App.character.PDamage = App.character.PDamage + wand.PDamage;
                 CRUD.Put("Characters", "CharacterCollection", App.character.Name, App.character);
             }
 
@@ -63,29 +69,34 @@ namespace Game.Pages
 
         private void btnDagger_Click(object sender, RoutedEventArgs e)
         {
-            if (App.character.Weapon != null && App.character.Weapon.Name == "Dager")
-                MessageBox.Show("Низя..");
-            else if (App.character.Weapon != null)
+            if(App.character.Weapon != null)
             {
-                App.character.Weapon = null;
+                if (App.character.Weapon.Name == "Dagger")
+                    MessageBox.Show("Низя..");
+                else
+                {
+                    App.character.PDamage -= App.character.Weapon.PDamage;
+                    App.character.Weapon = null;
 
-                Weapon weapon = new Weapon("Dager", "Common");
-                App.character.Weapon = weapon;
-                App.character.PDamage = App.character.PDamage + 3;
-                CRUD.Put("Characters", "CharacterCollection", App.character.Name, App.character);
+                    Dagger dagger = new Dagger("Common");
+                    App.character.Weapon = dagger;
+                    App.character.PDamage = App.character.PDamage + dagger.PDamage;
+                    CRUD.Put("Characters", "CharacterCollection", App.character.Name, App.character);
+                }
+
             }
             else
             {
-                Weapon weapon = new Weapon("Dager", "Common");
-                App.character.Weapon = weapon;
-                App.character.PDamage = App.character.PDamage + 3;
+                Dagger dagger = new Dagger("Common");
+                App.character.Weapon = dagger;
+                App.character.PDamage = App.character.PDamage + dagger.PDamage;
                 CRUD.Put("Characters", "CharacterCollection", App.character.Name, App.character);
             }
         }
 
         private void btnSword_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new NotBaseStatpointsPage());
+            App.character.Weapon = null;
         }
 
         private void btnAxe_Click(object sender, RoutedEventArgs e)
