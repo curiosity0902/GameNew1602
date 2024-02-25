@@ -56,6 +56,7 @@ namespace Game.Pages
                     CRUD.Put("Characters", "CharacterCollection", App.character.Name, App.character);
                 }
 
+
             }
             else
             {
